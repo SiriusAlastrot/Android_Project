@@ -25,7 +25,7 @@ public class TacheArrayAdapter  extends ArrayAdapter<Tache> {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             cellView = inflater.inflate(R.layout.cell_layout, parent, false);
         }
-        TextView textView = (TextView)cellView.findViewById(R.id.label);
+        TextView textView = (TextView)cellView.findViewById(R.id.title);
         ImageView imageView = (ImageView)cellView.findViewById(R.id.image);
         Tache task = getItem(position);
         textView.setText(task.title);
