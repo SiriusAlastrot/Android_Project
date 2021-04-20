@@ -4,10 +4,12 @@ public class Tache {
     String title;
     int priority;
     int nbDay;
-    Tache(String title, int priority, int nbDay)
-    {
-        this.priority= priority;
-        this.title= title;
-        this.nbDay= nbDay;
+    boolean autoInc;
+
+    Tache(String title, int priority, int nbDay, boolean autoInc) {
+        this.priority = priority;
+        this.title = title;
+        this.nbDay = nbDay;
+        this.autoInc = autoInc;
     }
 }
