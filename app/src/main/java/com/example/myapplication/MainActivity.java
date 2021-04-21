@@ -63,4 +63,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onContextItemSelected(item);
     }
+    //TODO: fonction qui vérifie la fin du jeu pour lancer l'activity EndGAME
 }
