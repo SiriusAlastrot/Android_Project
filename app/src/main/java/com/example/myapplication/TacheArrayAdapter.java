@@ -30,13 +30,14 @@ public class TacheArrayAdapter  extends ArrayAdapter<Tache> {
         Tache task = getItem(position);
         textView.setText(task.title);
         //Modification des taches en fonction des priorité
+        /*
         switch(task.priority) {
             case 0:
                 break;
             case 1:
                 break;
             //...
-        }
+        }*/
         return cellView;
     } // fin de la méthode getView
 }

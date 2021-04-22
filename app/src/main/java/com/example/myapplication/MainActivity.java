@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        taches.add(new Tache("Tache1", 0,0, true));
-        taches.add(new Tache("Tache2", 1,0, true));
+        taches.add(new Tache("Tache1"));
+        taches.add(new Tache("Tache2"));
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.list);
         registerForContextMenu(mListView);
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     {
         switch(item.getItemId()) {
             case R.id.add_settings:
-                mAdapter.add(new Tache("newTache", 1,0, true));
+                mAdapter.add(new Tache("newTache"));
                 return true;
             case R.id.quit_settings:
                 System.exit(0);
