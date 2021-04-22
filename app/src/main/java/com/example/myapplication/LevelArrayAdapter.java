@@ -26,9 +26,11 @@ public class LevelArrayAdapter extends ArrayAdapter<Level> {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             cellView = inflater.inflate(R.layout.cell_list_level, parent, false);
         }
-        TextView textView = (TextView)cellView.findViewById(R.id.titleLevel);
+        TextView textLevel = (TextView)cellView.findViewById(R.id.titleLevel);
+        TextView textSizeLevel = (TextView)cellView.findViewById(R.id.sizegrid);
         Level task = getItem(position);
-        textView.setText(task.levelName);
+        textLevel.setText(task.levelName);
+        textSizeLevel.setText(task.size);
         //Modification des taches en fonction des priorité
         /*
         switch(task.priority) {
