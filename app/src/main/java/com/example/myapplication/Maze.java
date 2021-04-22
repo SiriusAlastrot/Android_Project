@@ -1,12 +1,22 @@
 package com.example.myapplication;
+
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.telecom.Call;
+
 import java.util.*;
-public class Maze {
+public class Maze
+{
     int[][] maze;
-    int h;
-    int w;
-    Maze(int h, int w)
+    float h;
+    float w;
+    Cell[][] cellGrid;
+    boolean gridInitialized= false;
+    public Maze(int h, int w)
     {
         maze = new int[h][w];
+        cellGrid = new Cell[w][h];
         this.h= h;
         this.w= w;
         for (int i = 0; i < h; i++)
@@ -101,18 +111,24 @@ public class Maze {
             }
         }
     }
-    void affiche()
+    void initGrid(float width, float height)
     {
-        for (int i = 0; i < h; i++)
-        {
-            for (int j = 0; j < w; j++)
-            {
-                if(maze[i][j] == 1)
-                {
-                    //fill(255,0,0);
-                    //noStroke();
-                    //rect(j*(width/w),i*(height/h), width/w, height/h);
+        if(!gridInitialized) {
+            for (int i = 0; i < h; i++) {
+                for (int j = 0; j < w; j++) {
+                    cellGrid[j][i] = new Cell(j * (width / this.w), i * (height / this.h), width / this.w, height / this.h, maze[i][j]);
                 }
+            }
+            gridInitialized= true;
+        }
+    }
+    public void affiche(Canvas canvas, Paint paint)
+    {
+        for (int i = 0; i < w; i++)
+        {
+            for (int j = 0; j < h; j++)
+            {
+                cellGrid[i][j].affiche(canvas, paint);
             }
         }
     }
