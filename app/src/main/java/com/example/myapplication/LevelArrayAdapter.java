@@ -30,7 +30,7 @@ public class LevelArrayAdapter extends ArrayAdapter<Level> {
         TextView textSizeLevel = (TextView)cellView.findViewById(R.id.sizegrid);
         Level task = getItem(position);
         textLevel.setText(task.levelName);
-        textSizeLevel.setText(task.size);
+        textSizeLevel.setText(""+task.size);
         //Modification des taches en fonction des priorité
         /*
         switch(task.priority) {

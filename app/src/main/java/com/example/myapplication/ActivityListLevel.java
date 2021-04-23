@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -7,8 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class ActivityListLevel extends AppCompatActivity {
         listLevel.add(new Level("Niveau1", 1));
         listLevel.add(new Level("Niveau2", 2));
         setContentView(R.layout.activity_level);
-        mListView = (ListView) findViewById(R.id.list);
+        mListView = (ListView) findViewById(R.id.listLevel);
         registerForContextMenu(mListView);
         mAdapter = new LevelArrayAdapter(this, listLevel);
         mListView.setAdapter(mAdapter);

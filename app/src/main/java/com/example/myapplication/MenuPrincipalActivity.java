@@ -15,7 +15,7 @@ public class MenuPrincipalActivity extends AppCompatActivity {
     }
 
     public void Lancer (View view){
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this,ActivityListLevel.class);
         startActivity(intent);
     }
 }
