@@ -23,7 +23,7 @@ public class ActivityListLevel extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         listLevel.add(new Level("Niveau1", 1));
-        listLevel.add(new Level("Niveau2", 2));
+        listLevel.add(new Level("Niveau2", 1));
         setContentView(R.layout.activity_level);
         mListView = (ListView) findViewById(R.id.listLevel);
         registerForContextMenu(mListView);
@@ -55,7 +55,7 @@ public class ActivityListLevel extends AppCompatActivity {
     {
         switch(item.getItemId()) {
             case R.id.add_settings:
-                mAdapter.add(new Level("newLevel", 3));
+                mAdapter.add(new Level("newLevel", 1));
                 return true;
             case R.id.quit_settings:
                 System.exit(0);

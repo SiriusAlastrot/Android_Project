@@ -21,7 +21,7 @@ public class Ball {
     {
         vX = vX - (float)(accY*0.1);
         vY = vY - (float)(accX*0.1);
-        float seuilVitesse = size/10;
+        float seuilVitesse = size/5;
         if(vX > seuilVitesse)
         {
             vX= seuilVitesse;
