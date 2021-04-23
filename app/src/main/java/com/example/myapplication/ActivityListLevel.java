@@ -17,7 +17,8 @@ import java.util.ArrayList;
 public class ActivityListLevel extends AppCompatActivity {
     private ListView mListView;
     private LevelArrayAdapter mAdapter;
-    private ArrayList<Level> listLevel = new ArrayList<Level>();
+    public static ArrayList<Level> listLevel = new ArrayList<Level>();
+    public static int currentLevel= 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,14 +29,14 @@ public class ActivityListLevel extends AppCompatActivity {
         registerForContextMenu(mListView);
         mAdapter = new LevelArrayAdapter(this, listLevel);
         mListView.setAdapter(mAdapter);
-        /*
-        mListView.setOnClickListener(new android.widget.AdapterView.OnItemClickListener() {
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(view.getContext(),ActivityGame.class);
+                Intent intent = new Intent(ActivityListLevel.this, ActivityGame.class);
+                currentLevel= position;
                 startActivity(intent);
             }
-        });*/
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)

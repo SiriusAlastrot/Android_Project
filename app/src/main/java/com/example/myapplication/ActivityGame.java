@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -21,11 +22,13 @@ public class ActivityGame extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_draw_game);
         a= (View) findViewById(R.id.viewGame);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
                 Sensor.TYPE_ACCELEROMETER);
+
+        DrawGame.currentLevel= ActivityListLevel.listLevel.get(ActivityListLevel.currentLevel);
     }
     public void onSensorChanged(SensorEvent event){
         // In this example, alpha is calculated as t / (t + dT),

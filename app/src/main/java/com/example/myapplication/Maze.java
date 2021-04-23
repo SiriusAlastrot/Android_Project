@@ -8,6 +8,7 @@ import android.telecom.Call;
 import java.util.*;
 public class Maze
 {
+
     int[][] maze;
     float h;
     float w;
