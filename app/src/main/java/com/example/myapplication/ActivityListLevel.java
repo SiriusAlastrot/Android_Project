@@ -2,6 +2,8 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityGroup;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -26,6 +28,14 @@ public class ActivityListLevel extends AppCompatActivity {
         registerForContextMenu(mListView);
         mAdapter = new LevelArrayAdapter(this, listLevel);
         mListView.setAdapter(mAdapter);
+        /*
+        mListView.setOnClickListener(new android.widget.AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(view.getContext(),ActivityGame.class);
+                startActivity(intent);
+            }
+        });*/
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -63,4 +73,5 @@ public class ActivityListLevel extends AppCompatActivity {
         }
         return super.onContextItemSelected(item);
     }
+
 }
