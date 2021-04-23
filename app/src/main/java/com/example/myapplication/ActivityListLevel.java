@@ -48,7 +48,7 @@ public class ActivityListLevel extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        getMenuInflater().inflate(R.menu.contextmenu, menu);
+        getMenuInflater().inflate(R.menu.contextmenulevel, menu);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
@@ -70,6 +70,10 @@ public class ActivityListLevel extends AppCompatActivity {
         switch(item.getItemId()) {
             case R.id.action_delete:
                 mAdapter.remove(mAdapter.getItem(menuInfo.position));
+                return true;
+            case R.id.action_edit:
+                Intent intent = new Intent(ActivityListLevel.this, EditLevelActivity.class);
+                startActivity(intent);
                 return true;
         }
         return super.onContextItemSelected(item);

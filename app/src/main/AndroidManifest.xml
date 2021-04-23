@@ -18,6 +18,7 @@
         </intent-filter>
         </activity>
         <activity android:name=".MainActivity"></activity>
+        <activity android:name=".EditLevelActivity"></activity>
         <activity android:name=".ActivityListLevel"></activity>
         <activity android:name=".ActivityGame"
             android:screenOrientation="portrait"

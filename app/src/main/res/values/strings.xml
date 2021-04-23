@@ -3,4 +3,5 @@
     <string name="add_settings">Ajouter</string>
     <string name="quit_settings">Quitter</string>
     <string name="action_delete">Supprimer</string>
+    <string name="action_edit">Editer</string>
 </resources>
