@@ -41,7 +41,7 @@ public class LevelBDD {
 
         ContentValues values = new ContentValues();
 
-        values.put(COL_NAME, level.getLevelName());
+        values.put(COL_NAME, level.levelName);
 
         return bdd.insert(TABLE_LEVELS, null, values);
     }

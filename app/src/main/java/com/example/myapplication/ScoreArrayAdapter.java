@@ -10,10 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ScoreArrayAdapter  extends ArrayAdapter<Score> {
     private final Context context;
-    public ScoreArrayAdapter(Context context, ArrayList<Score> values) {
+    public ScoreArrayAdapter(Context context, List<Score> values) {
         super(context, R.layout.cell_layout, values);
         this.context = context;
     }

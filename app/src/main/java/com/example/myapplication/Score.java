@@ -4,12 +4,14 @@ public class Score {
     String pseudo;
     String temps;
     String niveau;
+    long id;
 
-
-    public Score(String pseudo, String temps, String niveau) {
+    public Score(long id, String pseudo, String temps, String niveau) {
+        this.id = id;
         this.pseudo = pseudo;
         this.temps = temps;
         this.niveau = niveau;
+
 
     }
     public String getPseudo() {
