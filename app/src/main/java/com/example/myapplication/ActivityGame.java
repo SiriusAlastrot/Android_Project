@@ -12,6 +12,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ActivityGame extends AppCompatActivity implements SensorEventListener {
+    public static final String EXTRA_TEMPS = "com.example.myapplication.TEMPS";
     private Handler mHandler = new Handler();
     public static int i = 0;
     private View a;
@@ -19,16 +20,19 @@ public class ActivityGame extends AppCompatActivity implements SensorEventListen
     public Sensor sensor;
     public static float[] gravity = new float[3];
     public static float[] linear_acceleration = new float[3];
+    long debut = System.currentTimeMillis();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw_game);
+
         a= (View) findViewById(R.id.viewGame);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
                 Sensor.TYPE_ACCELEROMETER);
 
         DrawGame.currentLevel= ActivityListLevel.listLevel.get(ActivityListLevel.currentLevel);
+
     }
     public void onSensorChanged(SensorEvent event){
         // In this example, alpha is calculated as t / (t + dT),
@@ -47,10 +51,20 @@ public class ActivityGame extends AppCompatActivity implements SensorEventListen
         linear_acceleration[1] = event.values[1] - gravity[1];
         linear_acceleration[2] = event.values[2] - gravity[2];
         a.invalidate();
+        if(DrawGame.ball.isWinned(DrawGame.currentLevel.mazeLevel)){
+            long tempsEcoulMills = System.currentTimeMillis() - debut;
+            String temps = String.valueOf(tempsEcoulMills);
+            Intent intent = new Intent(this,EndGameActivity.class);
+            intent.putExtra(EXTRA_TEMPS,temps);
+            startActivity(intent);
+        }
+
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
+
+
 }

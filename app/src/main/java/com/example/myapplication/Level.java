@@ -9,7 +9,7 @@ public class Level {
     int h;
     int size;
     ArrayList<Score> listScore= new ArrayList<Score>();
-    Level(String levelName, int size)
+   public Level(String levelName, int size)
     {
         this.w= 9*size;
         this.h= 16* size+1;
@@ -17,4 +17,8 @@ public class Level {
         this.levelName= levelName;
         mazeLevel= new Maze(this.h, this.w);
     }
+    public String getLevelName() {
+        return levelName;
+    }
+
 }

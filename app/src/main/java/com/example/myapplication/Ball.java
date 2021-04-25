@@ -1,8 +1,12 @@
 package com.example.myapplication;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.View;
 
 public class Ball {
     static float size;
@@ -114,21 +118,17 @@ public class Ball {
         }
         return false;
     }
-    static boolean isWinned(Paint paint, Canvas canvas, Maze maze)
+    static boolean isWinned(Maze maze)
     {
         Cell winCell = maze.cellGrid[(int) (maze.w- 2)][(int) (maze.h - 2)];
         float bottom = winCell.y + winCell.sizeY;
         float right = winCell.x + winCell.sizeX;
         if(collisionRect(winCell))
         {
-            paint.setColor(Color.BLUE);
-            canvas.drawRect(winCell.x,winCell.y, right, bottom, paint);
             return true;
         }
         else
         {
-            paint.setColor(Color.GREEN);
-            canvas.drawRect(winCell.x,winCell.y, right, bottom, paint);
             return false;
         }
     }

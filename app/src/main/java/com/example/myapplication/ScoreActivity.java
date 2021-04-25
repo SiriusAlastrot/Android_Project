@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActivityGroup;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -14,31 +13,29 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class ActivityListLevel extends AppCompatActivity {
-    public static final String EXTRA_NAME = "com.example.myapplication";
+public class ScoreActivity extends AppCompatActivity {
     private ListView mListView;
-    private LevelArrayAdapter mAdapter;
-    public static ArrayList<Level> listLevel = new ArrayList<Level>();
-    public static int currentLevel= 0;
+    private ScoreArrayAdapter mAdapter;
+    private ArrayList<Score> scores = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ScoreBDD Scorebdd = new ScoreBDD(this);
+        Scorebdd.open();
+
+        // on reprends l'intention
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(EndGameActivity.EXTRA_MESSAGE);
+        String name = intent.getStringExtra(ActivityListLevel.EXTRA_NAME);
+        String temps = intent.getStringExtra(ActivityGame.EXTRA_TEMPS);
         super.onCreate(savedInstanceState);
-        listLevel.add(new Level("Niveau1", 1));
-        listLevel.add(new Level("Niveau2", 1));
-        setContentView(R.layout.activity_level);
-        mListView = (ListView) findViewById(R.id.listLevel);
+        Scorebdd.insertScore(new Score(message,temps,name));
+        scores.add(new Score(message,temps,name));
+        setContentView(R.layout.activity_main);
+        mListView = (ListView) findViewById(R.id.list);
         registerForContextMenu(mListView);
-        mAdapter = new LevelArrayAdapter(this, listLevel);
+        mAdapter = new ScoreArrayAdapter(this, scores);
         mListView.setAdapter(mAdapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(ActivityListLevel.this, ActivityGame.class);
-                currentLevel= position;
-                intent.putExtra(EXTRA_NAME,currentLevel);
-                startActivity(intent);
-            }
-        });
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -50,14 +47,14 @@ public class ActivityListLevel extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        getMenuInflater().inflate(R.menu.contextmenulevel, menu);
+        getMenuInflater().inflate(R.menu.contextmenu, menu);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
         switch(item.getItemId()) {
             case R.id.add_settings:
-                mAdapter.add(new Level("newLevel", 1));
+                mAdapter.add(new Score("Alastrot", "18", "2" ));
                 return true;
             case R.id.quit_settings:
                 System.exit(0);
@@ -73,12 +70,7 @@ public class ActivityListLevel extends AppCompatActivity {
             case R.id.action_delete:
                 mAdapter.remove(mAdapter.getItem(menuInfo.position));
                 return true;
-            case R.id.action_edit:
-                Intent intent = new Intent(ActivityListLevel.this, EditLevelActivity.class);
-                startActivity(intent);
-                return true;
         }
         return super.onContextItemSelected(item);
     }
-
 }

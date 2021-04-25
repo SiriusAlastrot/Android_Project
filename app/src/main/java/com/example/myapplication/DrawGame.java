@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -8,8 +9,8 @@ import android.view.View;
 
 public class DrawGame extends View {
 
-    Ball ball= new Ball(0,0, 30);
-    public static Level currentLevel;
+    static Ball ball= new Ball(0,0, 30);
+    static Level currentLevel;
     public DrawGame(Context context,  AttributeSet attrs) {
         super(context, attrs);
 
@@ -24,7 +25,7 @@ public class DrawGame extends View {
         paint.setStyle(Paint.Style.FILL);
         Ball.updatePosition( (ActivityGame.gravity[1]),  (ActivityGame.gravity[2]), getWidth(), getHeight(), currentLevel.w, currentLevel.h);
         Ball.collision(paint, canvas, currentLevel.mazeLevel);
-        Ball.isWinned(paint, canvas, currentLevel.mazeLevel);
+        Ball.isWinned(currentLevel.mazeLevel);
         super.onDraw(canvas);
     }
 
