@@ -45,6 +45,33 @@ public class Maze
         //　Allocate the maze with recursive method
         recursion(r, c);
     }
+    public void regenerate()
+    {
+        for (int i = 0; i < h; i++)
+        {
+            for (int j = 0; j < w; j++)
+            {
+                maze[i][j] = 1;
+            }
+        }
+        Random rand = new Random();
+        // r for row、c for column
+        // Generate random r
+        int r = rand.nextInt((int) h);
+        while (r % 2 == 0) {
+            r = rand.nextInt((int) h);
+        }
+        // Generate random c
+        int c = rand.nextInt((int) w);
+        while (c % 2 == 0) {
+            c = rand.nextInt((int) w);
+        }
+        // Starting cell
+        maze[r][c] = 0;
+
+        //　Allocate the maze with recursive method
+        recursion(r, c);
+    }
     public Integer[] generateRandomDirections() {
         ArrayList<Integer> randoms = new ArrayList<Integer>();
         for (int i = 0; i < 4; i++)

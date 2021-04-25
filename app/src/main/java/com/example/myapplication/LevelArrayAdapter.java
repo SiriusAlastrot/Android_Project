@@ -18,6 +18,7 @@ public class LevelArrayAdapter extends ArrayAdapter<Level> {
         super(context, R.layout.cell_list_level, values);
         this.context = context;
     }
+
     public View getView(int position, View convertView, ViewGroup parent)
     {
         View cellView = convertView;
@@ -31,15 +32,6 @@ public class LevelArrayAdapter extends ArrayAdapter<Level> {
         Level task = getItem(position);
         textLevel.setText(task.levelName);
         textSizeLevel.setText("Difficulté:"+task.size);
-        //Modification des taches en fonction des priorité
-        /*
-        switch(task.priority) {
-            case 0:
-                break;
-            case 1:
-                break;
-            //...
-        }*/
         return cellView;
-    } // fin de la méthode getView
+    }
 }

@@ -4,4 +4,7 @@
     <string name="quit_settings">Quitter</string>
     <string name="action_delete">Supprimer</string>
     <string name="action_edit">Editer</string>
+    <string name="regenerate_Lab">Regénerer le labyrinthe</string>
+    <string name="editLevel">Editeur de niveau</string>
+    <string name="playButton">Jouer</string>
 </resources>

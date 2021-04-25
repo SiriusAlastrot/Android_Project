@@ -76,6 +76,7 @@ public class ActivityListLevel extends AppCompatActivity {
             case R.id.action_edit:
                 Intent intent = new Intent(ActivityListLevel.this, EditLevelActivity.class);
                 startActivity(intent);
+                currentLevel= menuInfo.position;
                 return true;
         }
         return super.onContextItemSelected(item);
