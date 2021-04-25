@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gravity Ball</string>
+    <string name="add_settings">Add</string>
+    <string name="quit_settings">Quit</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="regenerate_Lab">Regenerate Maze</string>
+    <string name="editLevel">Level editor</string>
+    <string name="playButton">Play</string>
+</resources>

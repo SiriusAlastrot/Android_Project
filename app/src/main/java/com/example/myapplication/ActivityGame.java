@@ -34,7 +34,6 @@ public class ActivityGame extends AppCompatActivity implements SensorEventListen
         // In this example, alpha is calculated as t / (t + dT),
         // where t is the low-pass filter's time-constant and
         // dT is the event delivery rate.
-
         double alpha = 0.1;
         i = i+1;
         // Isolate the force of gravity with the low-pass filter.

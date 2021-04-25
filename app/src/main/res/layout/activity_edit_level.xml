@@ -6,45 +6,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/regenerateLab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Regénerer le labyrinthe"
-        app:layout_constraintTop_toBottomOf="@id/editTextTextPersonName"
+        android:text="@string/regenerate_Lab"
+        app:layout_constraintTop_toBottomOf="@id/textFieldLevelName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:onClick="regenerateButton"
  />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/quit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Valider les modifications"
-        app:layout_constraintTop_toBottomOf="@id/button3"
+        android:text="@string/quit_settings"
+        android:onClick="quitEditMode"
+        app:layout_constraintTop_toBottomOf="@id/regenerateLab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
  />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/editLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Editeur de niveau"
+        android:text="@string/editLevel"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/textFieldLevelName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintTop_toBottomOf="@id/textView3"
+        android:text="LevelName"
+        app:layout_constraintTop_toBottomOf="@id/editLevel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
