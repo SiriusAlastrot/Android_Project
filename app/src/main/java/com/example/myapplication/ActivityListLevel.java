@@ -18,17 +18,20 @@ public class ActivityListLevel extends AppCompatActivity {
     public static final String EXTRA_NAME = "com.example.myapplication";
     private ListView mListView;
     private LevelArrayAdapter mAdapter;
+    private myLevelBDDAdapter dbAdapter;
     public static ArrayList<Level> listLevel = new ArrayList<Level>();
     public static int currentLevel= 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        listLevel.add(new Level("Niveau1", 1));
-        listLevel.add(new Level("Niveau2", 1));
+        //listLevel.add(new Level("Niveau1", 1));
+        //listLevel.add(new Level("Niveau2", 1));
+        dbAdapter = new myLevelBDDAdapter(this);
+        dbAdapter.open();
         setContentView(R.layout.activity_level);
         mListView = (ListView) findViewById(R.id.listLevel);
         registerForContextMenu(mListView);
-        mAdapter = new LevelArrayAdapter(this, listLevel);
+        mAdapter = new LevelArrayAdapter(this,dbAdapter.getAllLevels());
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -57,7 +60,7 @@ public class ActivityListLevel extends AppCompatActivity {
     {
         switch(item.getItemId()) {
             case R.id.add_settings:
-                mAdapter.add(new Level("newLevel", 1));
+                dbAdapter.insertLevel("newLevel",1);
                 return true;
             case R.id.quit_settings:
                 System.exit(0);
@@ -80,6 +83,11 @@ public class ActivityListLevel extends AppCompatActivity {
                 return true;
         }
         return super.onContextItemSelected(item);
+    }
+    @Override
+    public void onDestroy(){
+        dbAdapter.close();
+        super.onDestroy();
     }
 
 }

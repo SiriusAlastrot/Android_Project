@@ -14,7 +14,7 @@ public class EndGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_game);
     }
-    EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
+    EditText editText = (EditText) findViewById(R.id.editTextTextPersonName2);
     String message = editText.getText().toString();
     public void GoScore (View view){
         Intent intent = new Intent(this,MenuPrincipalActivity.class);

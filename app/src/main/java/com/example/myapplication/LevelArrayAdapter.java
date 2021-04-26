@@ -11,10 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LevelArrayAdapter extends ArrayAdapter<Level> {
     private final Context context;
-    public LevelArrayAdapter(Context context, ArrayList<Level> values) {
+    public LevelArrayAdapter(Context context, List<Level> values) {
         super(context, R.layout.cell_list_level, values);
         this.context = context;
     }
