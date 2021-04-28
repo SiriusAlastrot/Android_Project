@@ -72,7 +72,7 @@ public class myScoreBDDAdapter  extends SQLiteOpenHelper {
         s.close();
         return scores;
     }
-    public long insertClient(String pseudo, String temps , String niveau) {
+    public long insertScore( String pseudo, String temps , String niveau) {
         ContentValues values = new ContentValues();
         values.put(COL_PSEUDO, pseudo);
         values.put(COL_TEMPS, temps);
@@ -86,12 +86,12 @@ public class myScoreBDDAdapter  extends SQLiteOpenHelper {
 
         @Override
         public void onCreate(SQLiteDatabase sqLiteDatabase) {
-            mDB.execSQL(CREATE_DB);
+            sqLiteDatabase.execSQL(CREATE_DB);
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-            mDB.execSQL("drop table " + TABLE_SCORES + ";");
+            sqLiteDatabase.execSQL("drop table " + TABLE_SCORES + ";");
             onCreate(sqLiteDatabase);
         }
     }

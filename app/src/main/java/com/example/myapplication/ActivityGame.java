@@ -12,7 +12,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ActivityGame extends AppCompatActivity implements SensorEventListener {
-    public static final String EXTRA_TEMPS = "com.example.myapplication.TEMPS";
+    public static final String EXTRA_TEMPS = "EXTRA_TEMPS";
+    public static final String EXTRA_NIVEAU2 = "EXTRA_NIVEAU";
     private Handler mHandler = new Handler();
     public static int i = 0;
     private View a;
@@ -49,15 +50,20 @@ public class ActivityGame extends AppCompatActivity implements SensorEventListen
         linear_acceleration[0] = event.values[0] - gravity[0];
         linear_acceleration[1] = event.values[1] - gravity[1];
         linear_acceleration[2] = event.values[2] - gravity[2];
-        a.invalidate();
-        if(DrawGame.ball.isWinned(DrawGame.currentLevel.mazeLevel)){
-            long tempsEcoulMills = System.currentTimeMillis() - debut;
-            String temps = String.valueOf(tempsEcoulMills);
-            Intent intent = new Intent(this,EndGameActivity.class);
-            intent.putExtra(EXTRA_TEMPS,temps);
-            startActivity(intent);
+        if(DrawGame.currentLevel.mazeLevel != null) {
+            if (DrawGame.ball.isWinned(DrawGame.currentLevel.mazeLevel)) {
+                Intent intentbefore = getIntent();
+                String niveau = intentbefore.getStringExtra(ActivityListLevel.EXTRA_NIVEAU);
+                long tempsEcoulMills = System.currentTimeMillis() - debut;
+                String temps = String.valueOf(tempsEcoulMills);
+                Intent intent = new Intent(this, EndGameActivity.class);
+                intent.putExtra(EXTRA_TEMPS,temps);
+                intent.putExtra(EXTRA_NIVEAU2,niveau);
+                startActivity(intent);
+                System.exit(0);
+            }
         }
-
+        a.invalidate();
     }
 
     @Override

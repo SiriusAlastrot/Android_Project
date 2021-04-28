@@ -15,30 +15,30 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class ActivityListLevel extends AppCompatActivity {
-    public static final String EXTRA_NAME = "com.example.myapplication";
+    public static final String EXTRA_NIVEAU = "EXTRA_NIVEAU";
     private ListView mListView;
     private LevelArrayAdapter mAdapter;
-    private myLevelBDDAdapter dbAdapter;
+    //private myLevelBDDAdapter dbAdapter;
     public static ArrayList<Level> listLevel = new ArrayList<Level>();
     public static int currentLevel= 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //listLevel.add(new Level("Niveau1", 1));
-        //listLevel.add(new Level("Niveau2", 1));
-        dbAdapter = new myLevelBDDAdapter(this);
-        dbAdapter.open();
+        listLevel.add(new Level(1,"Niveau1", 1));
+        listLevel.add(new Level(2,"Niveau2", 1));
+        //dbAdapter = new myLevelBDDAdapter(this);
+        //dbAdapter.open();
         setContentView(R.layout.activity_level);
         mListView = (ListView) findViewById(R.id.listLevel);
         registerForContextMenu(mListView);
-        mAdapter = new LevelArrayAdapter(this,dbAdapter.getAllLevels());
+        mAdapter = new LevelArrayAdapter(this,listLevel);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ActivityListLevel.this, ActivityGame.class);
                 currentLevel= position;
-                intent.putExtra(EXTRA_NAME,currentLevel);
+                intent.putExtra(EXTRA_NIVEAU,currentLevel);
                 startActivity(intent);
             }
         });
@@ -60,7 +60,8 @@ public class ActivityListLevel extends AppCompatActivity {
     {
         switch(item.getItemId()) {
             case R.id.add_settings:
-                dbAdapter.insertLevel("newLevel",1);
+                //dbAdapter.insertLevel("newLevel",1);
+                listLevel.add(new Level(6,"New Level", 1));
                 return true;
             case R.id.quit_settings:
                 System.exit(0);
@@ -86,7 +87,7 @@ public class ActivityListLevel extends AppCompatActivity {
     }
     @Override
     public void onDestroy(){
-        dbAdapter.close();
+        //dbAdapter.close();
         super.onDestroy();
     }
 

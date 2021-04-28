@@ -8,32 +8,35 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="137dp"
-        android:layout_marginTop="81dp"
-        android:text="Fin du jeu"
+        android:layout_width="111dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="76dp"
+        android:text="@string/fin_du_jeu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="240dp"
+        android:layout_width="223dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="360dp"
+        android:background="@drawable/save"
         android:onClick="GoScore"
-        android:text="Score"
+        android:text="@string/score"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="177dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="140dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="@string/name"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintStart_toStartOf="@+id/button2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

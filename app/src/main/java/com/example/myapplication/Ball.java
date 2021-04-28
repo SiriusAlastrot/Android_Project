@@ -96,33 +96,30 @@ public class Ball {
     {
         float testX = posX;
         float testY = posY;
-        if (posX+size< collisionCell.x)
-        {
-            testX = collisionCell.y;
-        }
-        else if (posX-size > collisionCell.x+collisionCell.sizeX)
-        {
-            testX = collisionCell.x+collisionCell.sizeX;
-        }
-        if (posY+size < collisionCell.y){
-            testY = collisionCell.y;
-        }
-        else if (posY-size > collisionCell.y+collisionCell.sizeY){
-            testY = collisionCell.y+collisionCell.sizeY;
-        }
-        float distX = posX-testX;
-        float distY = posY-testY;
-        double distance = Math.sqrt((distX*distX) + (distY*distY));
-        if (distance <= size) {
-            return true;
+        if(collisionCell != null) {
+            if (posX + size < collisionCell.x) {
+                testX = collisionCell.y;
+            } else if (posX - size > collisionCell.x + collisionCell.sizeX) {
+                testX = collisionCell.x + collisionCell.sizeX;
+            }
+            if (posY + size < collisionCell.y) {
+                testY = collisionCell.y;
+            } else if (posY - size > collisionCell.y + collisionCell.sizeY) {
+                testY = collisionCell.y + collisionCell.sizeY;
+            }
+            float distX = posX - testX;
+            float distY = posY - testY;
+            double distance = Math.sqrt((distX * distX) + (distY * distY));
+            if (distance <= size) {
+                return true;
+            }
         }
         return false;
+
     }
     static boolean isWinned(Maze maze)
     {
         Cell winCell = maze.cellGrid[(int) (maze.w- 2)][(int) (maze.h - 2)];
-        float bottom = winCell.y + winCell.sizeY;
-        float right = winCell.x + winCell.sizeX;
         if(collisionRect(winCell))
         {
             return true;

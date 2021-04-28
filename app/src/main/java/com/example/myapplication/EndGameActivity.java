@@ -8,17 +8,28 @@ import android.view.View;
 import android.widget.EditText;
 
 public class EndGameActivity extends AppCompatActivity {
-    public static final String EXTRA_MESSAGE = "com.example.myapplication.MESSAGE";
+    public static final String EXTRA_PSEUDO = "EXTRA_PSEUDO";
+    public static final String EXTRA_TEMPS2 = "EXTRA_TEMPS2";
+    public static final String EXTRA_NIVEAU3 = "EXTRA_NIVEAU3";
+    EditText editText;
+    String pseudo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_game);
+        editText = (EditText) findViewById(R.id.editTextTextPersonName2);
+        pseudo = editText.getText().toString();
     }
-    EditText editText = (EditText) findViewById(R.id.editTextTextPersonName2);
-    String message = editText.getText().toString();
+
+
     public void GoScore (View view){
-        Intent intent = new Intent(this,MenuPrincipalActivity.class);
-        intent.putExtra(EXTRA_MESSAGE,message);
+        Intent intentbefore = getIntent();
+        String temps = intentbefore.getStringExtra(ActivityGame.EXTRA_TEMPS);
+        String niveau = intentbefore.getStringExtra(ActivityGame.EXTRA_NIVEAU2);
+        Intent intent = new Intent(this,ScoreActivity.class);
+        intent.putExtra(EXTRA_TEMPS2,temps);
+        intent.putExtra(EXTRA_PSEUDO, pseudo);
+        intent.putExtra(EXTRA_NIVEAU3,niveau);
         startActivity(intent);
     }
 }

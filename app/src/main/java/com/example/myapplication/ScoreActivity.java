@@ -4,11 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -18,21 +14,24 @@ public class ScoreActivity extends AppCompatActivity {
     private ListView mListView;
     private ScoreArrayAdapter mAdapter;
     private myScoreBDDAdapter bdAdapter;
+    public static ArrayList<Score> listscores = new ArrayList<Score>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ScoreBDD Scorebdd = new ScoreBDD(this);
-        Scorebdd.open();
+        //ScoreBDD Scorebdd = new ScoreBDD(this);
+        //Scorebdd.open();
         bdAdapter = new myScoreBDDAdapter(this);
         bdAdapter.open();
-
         // on reprends l'intention
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(EndGameActivity.EXTRA_MESSAGE);
-        String name = intent.getStringExtra(ActivityListLevel.EXTRA_NAME);
-        String temps = intent.getStringExtra(ActivityGame.EXTRA_TEMPS);
+        Intent intentbefore = getIntent();
+        String pseudo = intentbefore.getStringExtra(EndGameActivity.EXTRA_PSEUDO);
+        String temps = intentbefore.getStringExtra(EndGameActivity.EXTRA_TEMPS2);
+        String niveau = intentbefore.getStringExtra(EndGameActivity.EXTRA_NIVEAU3);
         super.onCreate(savedInstanceState);
-        Scorebdd.insertScore(new Score(id++,message,temps,name));
+        bdAdapter.insertScore(pseudo,temps,niveau);
+        //bdAdapter.insertScore("CORENTIN","CORENTIN","CORENTIN");
+        //listscores.add(new Score(23,"jojo","300","3"));
+        //listscores.add(new Score(2,"jajaja","301","3"));
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.list);
 
@@ -45,5 +44,8 @@ public class ScoreActivity extends AppCompatActivity {
         bdAdapter.close();
         super.onDestroy();
    }
-
+    public void back(View view){
+        Intent intent = new Intent(this,MenuPrincipalActivity.class);
+        startActivity(intent);
+    }
 }

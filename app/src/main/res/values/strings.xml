@@ -7,4 +7,11 @@
     <string name="regenerate_Lab">Regénerer le labyrinthe</string>
     <string name="editLevel">Editeur de niveau</string>
     <string name="playButton">Jouer</string>
+    <string name="levelname">LevelName</string>
+    <string name="fin_du_jeu">Fin du jeu</string>
+    <string name="score">Score</string>
+    <string name="name">Name</string>
+    <string name="gravity_ball">GRAVITY BALL</string>
+    <string name="title">title</string>
+    <string name="size">size</string>
 </resources>

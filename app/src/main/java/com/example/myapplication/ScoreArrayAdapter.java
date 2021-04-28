@@ -27,7 +27,7 @@ public class ScoreArrayAdapter  extends ArrayAdapter<Score> {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             cellView = inflater.inflate(R.layout.cell_layout, parent, false);
         }
-        TextView textView = (TextView)cellView.findViewById(R.id.title);
+        TextView textView = (TextView)cellView.findViewById(R.id.pseudo);
         Score task = getItem(position);
         textView.setText(task.pseudo);
         //Modification des taches en fonction des priorité
