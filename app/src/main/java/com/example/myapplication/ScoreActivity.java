@@ -25,10 +25,13 @@ public class ScoreActivity extends AppCompatActivity {
         // on reprends l'intention
         Intent intentbefore = getIntent();
         String pseudo = intentbefore.getStringExtra(EndGameActivity.EXTRA_PSEUDO);
+        System.out.println(pseudo);
         String temps = intentbefore.getStringExtra(EndGameActivity.EXTRA_TEMPS2);
+        System.out.println(temps);
         String niveau = intentbefore.getStringExtra(EndGameActivity.EXTRA_NIVEAU3);
+        System.out.println(niveau);
         super.onCreate(savedInstanceState);
-        bdAdapter.insertScore(pseudo,temps,niveau);
+        bdAdapter.insertScore(pseudo,temps,"15");
         //bdAdapter.insertScore("CORENTIN","CORENTIN","CORENTIN");
         //listscores.add(new Score(23,"jojo","300","3"));
         //listscores.add(new Score(2,"jajaja","301","3"));

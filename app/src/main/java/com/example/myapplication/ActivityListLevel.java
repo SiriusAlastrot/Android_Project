@@ -38,7 +38,8 @@ public class ActivityListLevel extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ActivityListLevel.this, ActivityGame.class);
                 currentLevel= position;
-                intent.putExtra(EXTRA_NIVEAU,currentLevel);
+                String monniveau = listLevel.get(currentLevel).levelName;
+                intent.putExtra(EXTRA_NIVEAU,monniveau);
                 startActivity(intent);
             }
         });

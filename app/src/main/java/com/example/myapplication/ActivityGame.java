@@ -61,6 +61,7 @@ public class ActivityGame extends AppCompatActivity implements SensorEventListen
                 intent.putExtra(EXTRA_NIVEAU2,niveau);
                 startActivity(intent);
                 System.exit(0);
+
             }
         }
         a.invalidate();
