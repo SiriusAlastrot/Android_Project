@@ -18,11 +18,12 @@ public class EndGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_game);
         editText = (EditText) findViewById(R.id.editTextTextPersonName2);
-        pseudo = editText.getText().toString();
+
     }
 
 
     public void GoScore (View view){
+        pseudo = editText.getText().toString();
         Intent intentbefore = getIntent();
         String temps = intentbefore.getStringExtra(ActivityGame.EXTRA_TEMPS);
         String niveau = intentbefore.getStringExtra(ActivityGame.EXTRA_NIVEAU2);
