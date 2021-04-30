@@ -54,8 +54,8 @@ public class ActivityGame extends AppCompatActivity implements SensorEventListen
             if (DrawGame.ball.isWinned(DrawGame.currentLevel.mazeLevel)) {
                 Intent intentbefore = getIntent();
                 String niveau = intentbefore.getStringExtra(ActivityListLevel.EXTRA_NIVEAU);
-                long tempsEcoulMills = System.currentTimeMillis() - debut;
-                String temps = String.valueOf(tempsEcoulMills);
+                long tempsEcoulMills = (System.currentTimeMillis() - debut)/1000;
+                String temps = String.valueOf(tempsEcoulMills) +" secondes";
                 Intent intent = new Intent(this, EndGameActivity.class);
                 intent.putExtra(EXTRA_TEMPS,temps);
                 intent.putExtra(EXTRA_NIVEAU2,niveau);

@@ -72,6 +72,22 @@ public class myScoreBDDAdapter  extends SQLiteOpenHelper {
         s.close();
         return scores;
     }
+    public List<Score> getScorebyLevel(String niveau){
+        List<Score> scores = new ArrayList<Score>();
+        Cursor s = mDB.query(TABLE_SCORES,
+                new String [] {COL_ID,COL_PSEUDO,COL_TEMPS,COL_NIVEAU},
+                null, null, null, null, null);
+        s.moveToFirst();
+        while (!s.isAfterLast()) {
+            if(s.getString(3).equals(niveau)) {
+                scores.add(new Score(s.getLong(0), s.getString(1), s.getString(2), s.getString(3)));
+            }
+            s.moveToNext();
+
+        }
+        s.close();
+        return scores;
+    }
     public long insertScore( String pseudo, String temps , String niveau) {
         ContentValues values = new ContentValues();
         values.put(COL_PSEUDO, pseudo);
