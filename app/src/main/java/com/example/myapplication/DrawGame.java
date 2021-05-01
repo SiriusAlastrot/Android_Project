@@ -21,7 +21,7 @@ public class DrawGame extends View {
         ball.size= getHeight()/currentLevel.h/3;
         Paint paint = new Paint();
         currentLevel.mazeLevel.affiche(canvas, paint);
-        Ball.affiche(paint, canvas);
+        Ball.affiche(paint, canvas,this.getContext());
         paint.setStyle(Paint.Style.FILL);
         Ball.updatePosition( (ActivityGame.gravity[1]),  (ActivityGame.gravity[2]), getWidth(), getHeight(), currentLevel.w, currentLevel.h);
         Ball.collision(paint, canvas, currentLevel.mazeLevel);

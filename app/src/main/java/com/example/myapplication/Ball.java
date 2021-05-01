@@ -3,12 +3,16 @@ package com.example.myapplication;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
 public class Ball {
+    static Bitmap background;
+    static Context context;
     static float size;
     static float vX= 0;
     static float vY= 0;
@@ -64,10 +68,12 @@ public class Ball {
         cellX= (int) ((int)(posX-posX%(width/widthGrid))/(width/widthGrid));
         cellY= (int) ((int)(posY-posY%(height/heightGrid))/(height/heightGrid));
     }
-    static void affiche(Paint paint, Canvas canvas)
+    static void affiche(Paint paint, Canvas canvas,Context context)
     {
-        paint.setColor(Color.WHITE);
-        canvas.drawCircle(posX ,posY,  size, paint);
+        background = BitmapFactory.decodeResource(context.getResources(),R.drawable.ball);
+        //paint.setColor(Color.WHITE);
+        //canvas.drawCircle(posX ,posY,  size, paint);
+        canvas.drawBitmap(background,posX,posY,paint);
     }
     static void collision(Paint paint, Canvas canvas, Maze maze)
     {
