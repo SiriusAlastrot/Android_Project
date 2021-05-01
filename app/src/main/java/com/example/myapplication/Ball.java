@@ -12,7 +12,6 @@ import android.view.View;
 
 public class Ball {
     static Bitmap background;
-    static Context context;
     static float size;
     static float vX= 0;
     static float vY= 0;
@@ -27,9 +26,9 @@ public class Ball {
     }
     static void updatePosition(float accX, float accY, float width, float height, float widthGrid, float heightGrid)
     {
-        vX = vX - (float)(accY*0.1);
-        vY = vY - (float)(accX*0.1);
-        float seuilVitesse = size/5;
+        vX = vX - (float)(accY*0.3);
+        vY = vY - (float)(accX*0.3);
+        float seuilVitesse = size/2;
         if(vX > seuilVitesse)
         {
             vX= seuilVitesse;
@@ -49,22 +48,6 @@ public class Ball {
 
         posY = posY + vY;
         posX = posX + vX;
-        if(posX-size <= width/widthGrid)
-        {
-            posX = 0+size + width/widthGrid;
-        }
-        if(posX+size >= width)
-        {
-            posX = width-size;
-        }
-        if(posY-size <= height/heightGrid)
-        {
-            posY = 0+size + height/heightGrid;
-        }
-        if(posY+size >= height)
-        {
-            posY = height-size;
-        }
         cellX= (int) ((int)(posX-posX%(width/widthGrid))/(width/widthGrid));
         cellY= (int) ((int)(posY-posY%(height/heightGrid))/(height/heightGrid));
     }
@@ -73,7 +56,10 @@ public class Ball {
         background = BitmapFactory.decodeResource(context.getResources(),R.drawable.ball);
         //paint.setColor(Color.WHITE);
         //canvas.drawCircle(posX ,posY,  size, paint);
-        canvas.drawBitmap(background,posX,posY,paint);
+        //background.setWidth((int) size);
+        //background.setHeight((int) size);
+        Bitmap bm = Bitmap.createScaledBitmap(background, (int)(size*2), (int)(size*2), true);
+        canvas.drawBitmap(bm,posX- size,posY-size,paint);
     }
     static void collision(Paint paint, Canvas canvas, Maze maze)
     {
@@ -82,19 +68,19 @@ public class Ball {
         Cell gauche= maze.cellGrid[cellX][cellY+1];
         Cell droite= maze.cellGrid[cellX+2][cellY+1];
         if (bas.state == 1 && collisionRect(bas)) {
-            vY= (float) (-vY*0.9);
+            vY= (float) (-vY*0.5);
             posY = bas.y+ bas.sizeY + size;
         }
         if (haut.state == 1 && collisionRect(haut)) {
-            vY= (float) (-vY*0.9);
+            vY= (float) (-vY*0.5);
             posY = haut.y - size;
         }
         if (gauche.state == 1 && collisionRect(gauche)) {
-            vX= (float) (-vX*0.9);
+            vX= (float) (-vX*0.5);
             posX = gauche.x+ gauche.sizeX + size;
         }
         if (droite.state == 1 && collisionRect(droite)) {
-            vX= (float) (-vX*0.9);
+            vX= (float) (-vX*0.5);
             posX = droite.x - size;
         }
     }
@@ -123,9 +109,12 @@ public class Ball {
         return false;
 
     }
-    static boolean isWinned(Maze maze)
+    static boolean isWinned(Maze maze, Context context, Canvas canvas, Paint paint)
     {
         Cell winCell = maze.cellGrid[(int) (maze.w- 2)][(int) (maze.h - 2)];
+        background = BitmapFactory.decodeResource(context.getResources(),R.drawable.win);
+        Bitmap.createScaledBitmap(background, (int)(winCell.sizeX*10), (int)(winCell.sizeY*10), true);
+        canvas.drawBitmap(background,winCell.x+(int)winCell.sizeX/2 -16*2,winCell.y+(int)winCell.sizeY/2 - 16*2,paint);
         if(collisionRect(winCell))
         {
             return true;
@@ -135,134 +124,6 @@ public class Ball {
             return false;
         }
     }
-    static void calVelocity(Cell rect){
-        float mirrorX = 1;
-        float mirrorY = 1;
-        float x = posX;
-        float y = posY;
-        float sdX = vX;
-        float sdy = vY;
-        x -= vX;
-        y -= vY;
-        float batW2 = rect.sizeX / 2;
-        float batH2 = rect.sizeY / 2;
-
-        float batH = batH2 + size;
-        float batW = batW2 + size;
-
-        x -= rect.x;
-        x -= rect.y;
-        if(x < 0){
-            mirrorX = -1;
-            x = -x;
-            sdX = -sdX;
-        }
-        if(y < 0){
-            mirrorY = -1;
-            y = -y;
-            sdy = -sdy;
-        }
-
-        float distY = (batH - y);
-        float distX = (batW - x);
-
-        if(sdX > 0 && sdy > 0){
-            return;
-        }
-
-
-        float ballSpeed = (float) Math.sqrt(sdX * sdX + sdy * sdy);
-
-        float bottomX = x +(sdX / sdy) * distY;
-
-
-        float rightY = y +(sdy / sdX) * distX;
-
-
-        float distB = (float) Math.hypot(bottomX - x, batH - y);
-        float distR = (float) Math.hypot(batW - x, rightY - y);
-        boolean hit = false;
-
-        if(sdy < 0 && bottomX <= batW2 && distB <= ballSpeed && distB < distR){
-            hit = true;
-            y = batH - sdy * ((ballSpeed - distB) / ballSpeed);
-            sdy = -sdy;
-        }
-        if(! hit && sdX < 0 && rightY <= batH2 && distR <= ballSpeed && distR <= distB){
-            hit = true;
-            x =  batW  - sdX * ((ballSpeed - distR) / ballSpeed);;
-            sdX = -sdX;
-        }
-        if(!hit){
-            float u = ((batW2 - x) * sdX + (batH2 - y) * sdy)/(ballSpeed * ballSpeed);
-
-            float cpx = x + sdX * u;
-            float cpy = y + sdy * u;
-
-            float radSqr = size*size;
-
-            float dist  = (cpx - batW2) * (cpx - batW2) + (cpy - batH2) * (cpy - batH2);
-
-            if(dist > radSqr){
-                return;
-            }
-
-            float d = (float) (Math.sqrt(radSqr - dist) / ballSpeed);
-
-
-            cpx -= sdX * d;
-            cpy -= sdy * d;
-
-            d = (float) Math.hypot(cpx - x,cpy - y);
-
-            if(d > ballSpeed){
-                return;
-            }
-
-            x = cpx;
-            y = cpy;
-
-
-            float ty = (cpx - batW2) / size;
-            float tx = -(cpy - batH2) / size;
-
-
-            float bsx = sdX / ballSpeed;
-            float bsy = sdy / ballSpeed;
-            float dot = (bsx * tx + bsy * ty) * 2;
-
-
-            d = ballSpeed - d;
-
-            sdX = (tx * dot - bsx);
-            sdy = (ty * dot - bsy);
-
-
-            x += sdX * d;
-            y += sdy * d;
-
-
-            sdX *= ballSpeed;
-            sdy *= ballSpeed;
-            hit = true;
-        }
-
-        if(hit){
-            x *= mirrorX;
-            sdX *= mirrorX;
-            y *= mirrorY;
-            sdy *= mirrorY;
-
-            x += rect.x;
-            y += rect.y;
-
-            posX = x;
-            posY = y;
-            vX = sdX;
-            vY = sdy;
-        }
-    }
-
     public static void setPosX(float posX) {
         Ball.posX = posX;
     }

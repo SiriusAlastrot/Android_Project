@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
@@ -24,13 +25,18 @@ public class EndGameActivity extends AppCompatActivity {
 
     public void GoScore (View view){
         pseudo = editText.getText().toString();
-        Intent intentbefore = getIntent();
-        String temps = intentbefore.getStringExtra(ActivityGame.EXTRA_TEMPS);
-        String niveau = intentbefore.getStringExtra(ActivityGame.EXTRA_NIVEAU2);
-        Intent intent = new Intent(this,ScoreActivity.class);
-        intent.putExtra(EXTRA_TEMPS2,temps);
-        intent.putExtra(EXTRA_PSEUDO, pseudo);
-        intent.putExtra(EXTRA_NIVEAU3,niveau);
-        startActivity(intent);
+        if( TextUtils.isEmpty(editText.getText())){
+            editText.setError( "Un pseudo est requis !" );
+
+        }else{
+            Intent intentbefore = getIntent();
+            String temps = intentbefore.getStringExtra(ActivityGame.EXTRA_TEMPS);
+            String niveau = intentbefore.getStringExtra(ActivityGame.EXTRA_NIVEAU2);
+            Intent intent = new Intent(this,ScoreActivity.class);
+            intent.putExtra(EXTRA_TEMPS2,temps);
+            intent.putExtra(EXTRA_PSEUDO, pseudo);
+            intent.putExtra(EXTRA_NIVEAU3,niveau);
+            startActivity(intent);
+        }
     }
 }

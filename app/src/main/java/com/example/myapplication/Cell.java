@@ -15,32 +15,27 @@ public class Cell {
     float sizeX;
     float sizeY;
     int state;
-    Cell(float x, float y, float sizeX, float sizeY, int state)
+    Cell(float x, float y, float sizeX, float sizeY, int state, Context context)
     {
         this.x= x;
         this.y= y;
         this.sizeX= sizeX;
         this.sizeY= sizeY;
         this.state= state;
+        background = BitmapFactory.decodeResource(context.getResources(),R.drawable.mur);
+        background= Bitmap.createScaledBitmap(background, (int)sizeX, (int)sizeY, true);
     }
     void affiche(Canvas canvas, Paint paint)
     {
         if(state == 1)
         {
-            background = BitmapFactory.decodeResource(context.getResources(),R.drawable.mur);
             canvas.drawBitmap(background,x,y,paint);
             //paint.setColor(Color.RED);
-        }
-        else if(state == 2)
-        {
-            background = BitmapFactory.decodeResource(context.getResources(),R.drawable.win);
-            canvas.drawBitmap(background,x,y,paint);
-            //paint.setColor(Color.YELLOW);
         }
         else
         {
             paint.setColor(Color.WHITE);
         }
-        canvas.drawRect(x,y, x + sizeX, y +sizeY, paint);
+        //canvas.drawRect(x,y, x + sizeX, y +sizeY, paint);
     }
 }

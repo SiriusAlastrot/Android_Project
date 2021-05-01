@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -25,14 +27,15 @@ public class ActivityGame extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_draw_game);
 
         a= (View) findViewById(R.id.viewGame);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
                 Sensor.TYPE_ACCELEROMETER);
-
         DrawGame.currentLevel= ActivityListLevel.listLevel.get(ActivityListLevel.currentLevel);
+
 
     }
     public void onSensorChanged(SensorEvent event){
@@ -51,7 +54,7 @@ public class ActivityGame extends AppCompatActivity implements SensorEventListen
         linear_acceleration[1] = event.values[1] - gravity[1];
         linear_acceleration[2] = event.values[2] - gravity[2];
         if(DrawGame.currentLevel.mazeLevel != null) {
-            if (DrawGame.ball.isWinned(DrawGame.currentLevel.mazeLevel)) {
+            if (DrawGame.win) {
                 Intent intentbefore = getIntent();
                 String niveau = intentbefore.getStringExtra(ActivityListLevel.EXTRA_NIVEAU);
                 long tempsEcoulMills = (System.currentTimeMillis() - debut)/1000;

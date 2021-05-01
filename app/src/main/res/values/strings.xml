@@ -8,7 +8,7 @@
     <string name="editLevel">Editeur de niveau</string>
     <string name="playButton">Jouer</string>
     <string name="levelname">LevelName</string>
-    <string name="fin_du_jeu">Fin du jeu</string>
+    <string name="fin_du_jeu">Vous avez gagné!</string>
     <string name="score">Score</string>
     <string name="name">Name</string>
     <string name="gravity_ball">GRAVITY BALL</string>

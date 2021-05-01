@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -139,18 +140,18 @@ public class Maze
             }
         }
     }
-    void initGrid(float width, float height)
+    void initGrid(float width, float height, Context context)
     {
         if(!gridInitialized) {
             for (int i = 0; i < h; i++) {
                 for (int j = 0; j < w; j++) {
-                    cellGrid[j][i] = new Cell(j * (width / this.w), i * (height / this.h), width / this.w, height / this.h, maze[i][j]);
+                    cellGrid[j][i] = new Cell(j * (width / this.w), i * (height / this.h), width / this.w, height / this.h, maze[i][j], context);
                 }
             }
             gridInitialized= true;
         }
     }
-    public void affiche(Canvas canvas, Paint paint)
+    public void affiche(Canvas canvas, Paint paint, Context context)
     {
         for (int i = 0; i < w; i++)
         {

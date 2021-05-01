@@ -25,7 +25,7 @@
         android:layout_marginLeft="10dp"
         android:gravity="right"
         android:paddingRight="10dp"
-        android:text="nbDay"
+        android:text="nbSecondes"
         android:textColor="@color/black"
         android:textSize="20dp" />
 

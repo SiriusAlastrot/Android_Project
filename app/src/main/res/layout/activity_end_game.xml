@@ -8,34 +8,38 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="111dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="148dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:text="@string/fin_du_jeu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        android:gravity="center"
+        />
 
     <ImageButton
         android:id="@+id/button2"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="360dp"
         android:background="@drawable/save"
         android:onClick="GoScore"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@id/editTextTextPersonName2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="140dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/name"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="@+id/button2" />
+        android:hint="Entrez votre pseudo..."
+        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
